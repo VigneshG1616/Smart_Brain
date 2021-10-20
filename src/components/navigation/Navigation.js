@@ -3,7 +3,12 @@ import React from "react";
 const Navigation = () => {
   return (
     <nav style={{ display: "flex", justifyContent: "flex-end" }}>
-      <p className="f3 link dim black underline pa3 pointer">Sign Out</p>
+      <p
+        style={{ background: "black", color: "white", padding: "5px 8px" }}
+        className=""
+      >
+        Sign Out
+      </p>
     </nav>
   );
 };

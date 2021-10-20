@@ -1,3 +1,12 @@
 .Tilt {
-  background: linear-gradient(to right top, #0080cf, #2ac38a);
+  background: linear-gradient(#4065a4, #d0aea7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+}
+
+.Tilt-inner img {
+  width: 100px;
 }
