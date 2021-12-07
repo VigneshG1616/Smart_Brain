@@ -7,6 +7,7 @@ import Clarifai from "clarifai";
 import Image_input_field from "./components/image_input_field/Image_input_field";
 import Rank from "./components/rank/Rank";
 import Recognised_image from "./components/recognised_image/Recognised_image";
+import Sign_in from "./components/sign_in/Sign_in";
 import "./App.css";
 
 const app = new Clarifai.App({
@@ -19,8 +20,28 @@ class App extends Component {
     this.state = {
       input: "",
       imageUrl: "",
+      box: {},
     };
   }
+
+  calculateFaceLocation = (data) => {
+    const clarifaiFace =
+      data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById("inputimage");
+    const width = Number(image.width);
+    const height = Number(image.height);
+
+    return {
+      leftCol: clarifaiFace.left_col * width,
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width - clarifaiFace.right_col * width,
+      bottomRow: height - clarifaiFace.bottom_row * height,
+    };
+  };
+
+  displayFaceBox = (box) => {
+    this.setState({ box: box });
+  };
 
   onInputChange = (event) => {
     this.setState({ input: event.target.value });
@@ -28,14 +49,12 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input).then(
-      function (response) {
-        console.log(
-          response.outputs[0].data.regions[0].region_info.bounding_box
-        );
-      },
-      function (err) {}
-    );
+    app.models
+      .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+      .then((response) =>
+        this.displayFaceBox(this.calculateFaceLocation(response))
+      )
+      .catch((err) => console.log(err));
   };
 
   render() {
@@ -50,7 +69,9 @@ class App extends Component {
           onButtonSubmit={this.onButtonSubmit}
         />
 
-        <Recognised_image imageUrl={this.state.imageUrl} />
+        <Recognised_image box={this.state.box} imageUrl={this.state.imageUrl} />
+
+        <Sign_in />
       </div>
     );
   }
