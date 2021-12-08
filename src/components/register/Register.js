@@ -1,21 +1,21 @@
 import React from "react";
-import "./Sign_in.css";
+import "../sign_in/Sign_in.css";
 
-const Sign_in = ({ onRouteChange }) => {
+const Register = ({ onRouteChange }) => {
   return (
     <div class="form-box">
       <form action="">
-        <div class="header-text">Login Form</div>
+        <div class="header-text">Register</div>
+        <input placeholder="Your Name" type="name" required />
         <input placeholder="Your Email Address" type="email" required />
         <input placeholder="Your Password" type="password" />
 
         <button className="login" onClick={() => onRouteChange("home")}>
-          Sign in
+          Register
         </button>
-        <button className="register">Register</button>
       </form>
     </div>
   );
 };
 
-export default Sign_in;
+export default Register;
