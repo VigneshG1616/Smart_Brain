@@ -57,9 +57,6 @@
   border-radius: 8px;
 }
 
-.input-heading {
-}
-
 .input-form-div div {
   display: block;
   box-shadow: 0px 0px 0px 1px #fff;
@@ -74,4 +71,5 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   width: 70%;
+  padding: 15px 8px;
 }

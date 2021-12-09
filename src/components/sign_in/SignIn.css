@@ -10,7 +10,7 @@
   left: 0;
   right: 0;
   width: 500px;
-  height: 430px;
+  height: fit-content;
 }
 .form-box:before {
   background: linear-gradient(89deg, #e0eafc 0%, #cfdef3 100%);
