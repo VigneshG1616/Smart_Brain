@@ -1,7 +1,7 @@
 import React from "react";
-import "./Recognised_image.css";
+import "./RecognisedImage.css";
 
-const Recognised_image = ({ imageUrl, box }) => {
+const RecognisedImage = ({ imageUrl, box }) => {
   return (
     <div
       className=""
@@ -29,4 +29,4 @@ const Recognised_image = ({ imageUrl, box }) => {
   );
 };
 
-export default Recognised_image;
+export default RecognisedImage;

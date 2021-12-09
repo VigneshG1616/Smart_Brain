@@ -1,7 +1,7 @@
 import React from "react";
-import "./Image_input_field.css";
+import "./ImageInputField.css";
 
-const Image_input_field = ({ onInputChange, onButtonSubmit }) => {
+const ImageInputField = ({ onInputChange, onButtonSubmit }) => {
   return (
     <div className="input-heading" style={{}}>
       <p
@@ -23,6 +23,7 @@ const Image_input_field = ({ onInputChange, onButtonSubmit }) => {
           <div className="input-form-div">
             <input
               className="input"
+              placeholder=" Enter the image url here"
               type="text"
               style={{ fontSize: "20px", height: "30px" }}
               onChange={onInputChange}
@@ -50,4 +51,4 @@ const Image_input_field = ({ onInputChange, onButtonSubmit }) => {
   );
 };
 
-export default Image_input_field;
+export default ImageInputField;

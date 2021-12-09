@@ -1,11 +1,11 @@
 import React from "react";
-import "../sign_in/Sign_in.css";
+import "../sign_in/SignIn.css";
 
 const Register = ({ onRouteChange }) => {
   return (
-    <div class="form-box">
-      <form action="">
-        <div class="header-text">Register</div>
+    <div className="form-box">
+      <div action="">
+        <div className="header-text">Register</div>
         <input placeholder="Your Name" type="name" required />
         <input placeholder="Your Email Address" type="email" required />
         <input placeholder="Your Password" type="password" />
@@ -13,7 +13,14 @@ const Register = ({ onRouteChange }) => {
         <button className="login" onClick={() => onRouteChange("home")}>
           Register
         </button>
-      </form>
+        <p className="registered">Already registered? Click below.</p>
+        <button
+          className="aleready-registered"
+          onClick={() => onRouteChange("signin")}
+        >
+          Sign in
+        </button>
+      </div>
     </div>
   );
 };
