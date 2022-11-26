@@ -4,6 +4,11 @@ import "./SignIn.css";
 const SignIn = ({ onRouteChange }) => {
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
+
+  const prevDef =(e)=>{
+e.preventDefault();
+  }
+
   const onEmailChange = (event) => {
     setSignInEmail(event.target.value);
   };
@@ -18,23 +23,27 @@ const SignIn = ({ onRouteChange }) => {
       method: "post",
       headers: { "Content-Type": "application/json" },
       mode: "no-cors",
-      body: {
+      body: JSON.stringify({
         email: signInEmail,
         password: signInPassword,
-      },
+      }),
     })
       .then((resp) => resp.json())
-      .then((data) => console.log("resp", data));
+      .then((data) =>{ if(data === "success"){
+          this.props.onRouteChange("home");
+          console.log("data ISS",data);
+      }});
 
     console.log("email", signInEmail);
     console.log("Pass", signInPassword);
-    console.log(userDetails);
+   
   };
 
   return (
     <div className="form-box">
       <div action="">
         <div className="header-text">Login Form</div>
+        <form onSubmit={prevDef}>
         <input
           placeholder="Your Email Address"
           onChange={(event) => onEmailChange(event)}
@@ -53,6 +62,7 @@ const SignIn = ({ onRouteChange }) => {
         <button className="register" onClick={() => onRouteChange("register")}>
           Register
         </button>
+        </form>
       </div>
     </div>
   );
