@@ -67,6 +67,10 @@ class App extends Component {
     this.setState({ route: route });
   };
 
+  setSignInStatusFalse = () => {
+    this.state({ isSignedIn: false });
+  };
+
   render() {
     return (
       <div className="App">
