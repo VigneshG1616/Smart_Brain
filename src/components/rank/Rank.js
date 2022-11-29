@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rank = () => {
+const Rank = ({name,entries}) => {
   return (
     <div className="">
       <div
@@ -10,7 +10,7 @@ const Rank = () => {
           textShadow: "2px 2px 8px rgba(0, 0, 0, 0.4)",
         }}
       >
-        {"VG, your present rank is...."}
+        {`"${name}, Your total search count is:"`}
       </div>
       <div
         className=""
@@ -19,7 +19,7 @@ const Rank = () => {
           textShadow: "2px 2px 8px rgba(0, 0, 0, 0.4)",
         }}
       >
-        {"#1"}
+        {entries}
       </div>
     </div>
   );

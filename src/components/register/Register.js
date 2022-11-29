@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../sign_in/SignIn.css";
 
-const Register = ({ onRouteChange }) => {
+const Register = ({ onRouteChange, loadUser }) => {
   const [registerName, setRegisterName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -19,6 +19,30 @@ const Register = ({ onRouteChange }) => {
   const onPasswordChange = (event) => {
     setRegisterPassword(event.target.value);
   };
+
+  const onRegisterSubmit = ()=>{
+    fetch("http://localhost:3131/register", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        newName: registerName,
+        newEmail: registerEmail,
+        newPassword: registerPassword,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data) {
+          alert("Registered Successfully");
+          onRouteChange("signin");
+          console.log("regdata ",data);
+          loadUser(data);
+          
+        } else {
+          alert("Failed to register");
+        } 
+      });
+  }
 
   return (
     <div className="form-box">
@@ -43,7 +67,7 @@ const Register = ({ onRouteChange }) => {
             type="password"
           />
 
-          <button className="login" onClick={() => onRouteChange("home")}>
+          <button className="login" onClick={onRegisterSubmit}>
             Register
           </button>
           <p className="registered">Already registered? Click below.</p>
